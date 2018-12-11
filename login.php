@@ -22,6 +22,9 @@ include("functions.php");
           <input class="button" type="submit" name = "submit" value="Prisijungti"><br />
 	</form>	
    <?php
+   
+
+
    if(isset($_POST['submit'])){
     
      if(empty($_POST['name']) || empty($_POST['pass'])){

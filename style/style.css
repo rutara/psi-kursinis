@@ -3,15 +3,18 @@
     font-family: Comic Sans MS;
     color: rgb(130, 183, 251);
 }
+
 body {
     background-image: url("../img/laboratorija.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
 }
+
 h1 {
     font-size: 350%;
 }
+
 .button, button {
     background-color: rgb(138, 9, 89);
     border: none;
@@ -20,10 +23,12 @@ h1 {
     font-size: 150%;
     font-weight: 150%;
 }
+
 .button:hover, button:hover {
-    background-color: rgb(163, 24, 110);
+    background-color: rgb(84, 24, 163);
     font-size: 160%;
 }
+
 .white_box {
     background-color: rgba(255, 255, 255, 0.11);
     padding: 5%;
@@ -32,4 +37,25 @@ h1 {
     position: relative;
     top: 100px;
     border-radius: 10px;
+}
+
+.circle {
+    height: 50px;
+    width: 50px;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: antiquewhite;
+}
+
+.disconn {
+    padding: 5px;
+    float: right;
+}
+
+.disconn button {
+    background-color: rgb(0, 81, 156);
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 100%;
+    font-weight: 100%;
 }
