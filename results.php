@@ -13,18 +13,20 @@ session_start();
 <div class="disconn">
 <?php echo $_SESSION['username'];
 $id = $_SESSION['id'];
+
 ?>
-<button>Atsijungti</button>
+<form method = 'POST' action=''>
+	<input type='submit' name='atsijungti' value ='Atsijungti'></input>
+</form>
 </div>
-<h2>Panašiausiai į klausimus atsakė: </h2>
+<h1>Panašiausiai į klausimus atsakė: </h1>
 <br>
-<ul>
-	<li><div class="circle">foto</div><p>vardas,metai</p><button>kontaktai</button><button>Palyginti atsakymus</button></li>
-	<li><div class="circle">foto</div><p>vardas,metai</p><button>kontaktai</button><button>Palyginti atsakymus</button></li>
-	<li><div class="circle">foto</div><p>vardas,metai</p><button>kontaktai</button><button>Palyginti atsakymus</button></li>
-</ul>
+
 </body>
 </html>
 <?php
 matching($id);
+// if(isset($_POST['atsijungti'])){
+// 	//atsijungti();
+// }
 ?>
