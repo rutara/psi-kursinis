@@ -11,13 +11,14 @@ if (mysqli_connect_errno())
 
     $vardas = $_POST['name'];
     $slaptazodis = $_POST['pass'];
-   
+    $lytis = $_POST['lytis'];
     $query = mysqli_query($conn,"SELECT* FROM users WHERE vardas ='$vardas' and  slaptazodis = '$slaptazodis' ");
     
     $rows = mysqli_num_rows($query);
     $row = mysqli_fetch_array($query);
     if($rows == 1){
         $_SESSION['username']=$vardas;
+        $_SESSION['lytis']=$lytis;
         $user_id = $row['user_id'];
         $_SESSION['id']=$user_id;
         $query2 = mysqli_query($conn,"SELECT* FROM user_answers WHERE user_id ='$user_id' ");
@@ -76,8 +77,8 @@ $kl_id = $row['q_id'];
 
 echo "<form method='get'>";
 echo "<h1>$klausimas</h1>";
-echo "<a href='?SUDVABALIS'><button type='submit' name='submit$i' value=$an_id1>$an1 $i</button></a>"; 
-echo "<a href='?SUDUKALNAS'><button type='submit' name='submit$i' value=$an_id2>$an2 $i</button></a>"; 
+echo "<button type='submit' name='submit$i' value=$an_id1>$an1 $i</button>"; 
+echo "<button type='submit' name='submit$i' value=$an_id2>$an2 $i</button>"; 
 echo "</form>";
 
 };
@@ -116,8 +117,9 @@ if ($conn->query($sql) === TRUE) {
 }
 };
 
-// BUTINAI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! daug kintamuju i masyvus perkelt!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 function matching($curr_id){
+
 include("config.php");
 $conn = mysqli_connect($host, $user,$pass,$db); 
 $answers = mysqli_query($conn,"SELECT * FROM user_answers where user_id=$curr_id");
@@ -132,36 +134,43 @@ $users_all = mysqli_query($conn,"SELECT * FROM users");
 $rows_all = mysqli_num_rows($users_all);
 
 for ($i=1; $i <= $rows_all; $i++) { 
-    $rate[$i]=0;
+    $m_info[$i]=0;
 echo"<h1>...........KAI USER_ID YRA $i............</h1>";
 $user_answers = mysqli_query($conn,"SELECT * FROM user_answers where user_id=$i");
-//$user_all = mysqli_fetch_array($user_answers);
+$query3 = mysqli_query($conn,"SELECT * FROM users where user_id=$i");
+$info = mysqli_fetch_array($query3);
+$g_info[$i] = $info['lytis'];
+$vardas_info[$i] = $info['vardas'];
+$id_info[$i] = $info['user_id'];            //veliau
+$metai_ingo[$i] = $info['gim_data'];      //veliau
+print_r($g_info);
 $n = 0 ;
 
   while ($user_all = mysqli_fetch_array($user_answers)){
    $all_answer_id[$k]=$user_all['answer_id'];
-//echo "<br>";
-//echo $curr_answer_id[$n];
-settype( $curr_answer_id[$n],"integer");
-settype($all_answer_id[$k],"integer");
-//echo "ir ";
-//echo $all_answer_id[$k];
-//echo "<br>";
-if($curr_answer_id[$n] == $all_answer_id[$k]){
-    $rate[$i]++;
-    //echo"sutampa";
-    //echo"<br>";
-};
+    settype( $curr_answer_id[$n],"integer");
+    settype($all_answer_id[$k],"integer");
+    // echo $all_answer_id[$k]."ir".$curr_answer_id[$n]."<br>";
+    if($curr_answer_id[$n] == $all_answer_id[$k]){
+    $m_info[$i]++;
+   };
 
       $k++;
       $n++;
 };
-echo "<h2>".$rate[$i]."0%</h2>";
+settype($_SESSION['lytis'],"string");
+settype($g_info[$i],"string");
+if(($curr_id !== $id_info[$i]) && ($_SESSION['lytis'] !== $g_info[$i])){
+echo "<h2>".$m_info[$i]."0%</h2>";
+echo $vardas_info[$i];
+echo "<br>";
+echo $g_info[$i];
 };
- 
-    
-
-// jei sutampa, tai i laikina kintamaji kintamaji ++,bent kol, kas statiskai
 };
 
+};
+// patikrinti ar kitas zmogus mergina ar vaikinas
+//patikrinti ar tai nera tas pats vartotojas ( kas siuo atveju net neimanoma, nes poruojama tik su skirtinga lytimi, tai galima
+//ir nedaryt)
+//padaryt masyva, kuriame butu reikalinga informacija matchinimui ( id, rate, lytis) info[0][1,50,mergina],[1]
 ?>
