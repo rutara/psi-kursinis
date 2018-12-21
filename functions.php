@@ -94,89 +94,96 @@ echo "</form>";
 };
 
 function irasyti($i){
-include("config.php");
+    include("config.php");
 
-$conn = mysqli_connect($host, $user,$pass,$db); 
-$query = mysqli_query($conn,"SELECT * FROM questions where q_id=$i");
-$answers = mysqli_query($conn,"SELECT * FROM answers where q_id=$i");
-$row = mysqli_fetch_array($query); 
-$j=1;
-while ($row2 = mysqli_fetch_array($answers)) {
-${'an'.$j}= $row2["answer"];
-${'an_id'.$j}=$row2["answer_id"];
-$j++;
- }
-$klausimas = $row['question']; 
-$id = $_SESSION['id']; 
-$kl_id = $row['q_id'];
+    $conn = mysqli_connect($host, $user,$pass,$db); 
+    $query = mysqli_query($conn,"SELECT * FROM questions where q_id=$i");
+    $answers = mysqli_query($conn,"SELECT * FROM answers where q_id=$i");
+    $row = mysqli_fetch_array($query); 
+    $j=1;
+    while ($row2 = mysqli_fetch_array($answers)) {
+        ${'an'.$j}= $row2["answer"];
+        ${'an_id'.$j}=$row2["answer_id"];
+        $j++;
+    }
+    $klausimas = $row['question']; 
+    $id = $_SESSION['id']; 
+    $kl_id = $row['q_id'];
 
-$ats =  $_GET["submit$i"];
+    $ats =  $_GET["submit$i"];
 
-$sql = "INSERT INTO user_answers (answer_id,user_id,question_id)
-VALUES ($ats,$id,$kl_id)";
+    $sql = "INSERT INTO user_answers (answer_id,user_id,question_id)
+    VALUES ($ats,$id,$kl_id)";
 };
 
 
 function matching($curr_id){
 
-include("config.php");
-$conn = mysqli_connect($host, $user,$pass,$db); 
-$answers = mysqli_query($conn,"SELECT DISTINCT* FROM user_answers where user_id=$curr_id");
-$k=0;
-$curr_answer_id = array();
-$filtruoti = array();
-   while ($row = mysqli_fetch_array($answers)){
-   $curr_answer_id[]=$row['answer_id'];
-}
+    include("config.php");
+    $conn = mysqli_connect($host, $user,$pass,$db); 
+    $answers = mysqli_query($conn,"SELECT DISTINCT* FROM user_answers where user_id=$curr_id");
+    $k=0;
+    $curr_answer_id = array();
+    $filtruoti = array();
+    while ($row = mysqli_fetch_array($answers)){
+        $curr_answer_id[]=$row['answer_id'];
+    }
 
-//print_r($curr_answer_id);
-$users_all = mysqli_query($conn,"SELECT * FROM users");
-$rows_all = mysqli_num_rows($users_all);
-for ($i=1; $i <= $rows_all; $i++) { 
-$m_info[$i][0]=0;
-//echo"<h1>...........KAI USER_ID YRA $i............</h1>";
-$user_answers = mysqli_query($conn,"SELECT DISTINCT * FROM user_answers where user_id=$i");
-$query3 = mysqli_query($conn,"SELECT  DISTINCT * FROM users where user_id=$i");
-$info = mysqli_fetch_array($query3);
-$m_info[$i][4] = $info['lytis'];
-$m_info[$i][1] = $info['vardas'];
-$m_info[$i][2]= $info['user_id']; 
-$m_info[$i][3] = $info['gim_data'];      
-$n = 0 ;
+    //print_r($curr_answer_id);
+    $users_all = mysqli_query($conn,"SELECT * FROM users");
+    $rows_all = mysqli_num_rows($users_all);
+    for ($i=1; $i <= $rows_all; $i++) { 
+        $m_info[$i][0]=0;
+        //echo"<h1>...........KAI USER_ID YRA $i............</h1>";
+        $user_answers = mysqli_query($conn,"SELECT DISTINCT * FROM user_answers where user_id=$i");
+        $query3 = mysqli_query($conn,"SELECT  DISTINCT * FROM users where user_id=$i");
+        $info = mysqli_fetch_array($query3);
+        $m_info[$i][4] = $info['lytis'];
+        $m_info[$i][1] = $info['vardas'];
+        $m_info[$i][2]= $info['user_id']; 
+        $m_info[$i][3] = $info['gim_data'];      
+        $n = 0 ;
 
-  while ($user_all = mysqli_fetch_array($user_answers)){
-   $all_answer_id[$k]=$user_all['answer_id'];
-    settype( $curr_answer_id[$n],"integer");
-    settype($all_answer_id[$k],"integer");
-   // echo $all_answer_id[$k]."ir".$curr_answer_id[$n]."<br>";
-    if($curr_answer_id[$n] == $all_answer_id[$k]){
-    $m_info[$i][0]++;
-   };
+        while ($user_all = mysqli_fetch_array($user_answers)){
+            $all_answer_id[$k]=$user_all['answer_id'];
+            settype( $curr_answer_id[$n],"integer");
+            settype($all_answer_id[$k],"integer");
+            // echo $all_answer_id[$k]."ir".$curr_answer_id[$n]."<br>";
+            if($curr_answer_id[$n] == $all_answer_id[$k]){
+                $m_info[$i][0]++;
+            };
 
-      $k++;
-      $n++;
-};
-arsort($m_info);
+            $k++;
+            $n++;
+        };
 
-if(($curr_id !== $m_info[$i][2]) && ($_SESSION['lytis'] !== $m_info[$i][4])){
-$kitas[] =$m_info[$i];
+    };
 
-};
+    rsort($m_info);
 
-}
+    for ($i=0; $i < count($m_info); $i++) {
+        if(($curr_id !== $m_info[$i][2]) && ($_SESSION['lytis'] !== $m_info[$i][4])){
+            $kitas[] = $m_info[$i];
+        }
 
-//print_r($m_info);
-//echo"<br> ........<br>";
-//print_r($kitas);
-$id1=$kitas[0][2];
-$id2=$kitas[1][2];
-$id3=$kitas[2][2];
-echo "<h1>".$kitas[0][0]."0% ".$kitas[0][1]."</h1>";
-echo "<a href='contacts.php?var=$id1'><button>Kontaktai</button></a><a href='compare_an.php?var=$id1'><button>Palyginti atsakymus</button></a></li>";
-echo "<h1>".$kitas[1][0]."0% ".$kitas[1][1]."</h1>";
-echo "<a href='contacts.php?var=$id2'><button>Kontaktai</button></a><a href='compare_an.php?var=$id2'><button>Palyginti atsakymus</button></a></li>";
-echo "<h1>".$kitas[2][0]."0% ".$kitas[2][1]."</h1>";
-echo "<a href='contacts.php?var=$id3'><button>Kontaktai</button></a><a href='compare_an.php?var=$id3'><button>Palyginti atsakymus</button></a></li>";
+        $ttt = $m_info[$i];
+        echo $ttt[1].$ttt[0];
+        echo "<br>";
+    }
+    echo "<br>";
+
+    print_r($m_info);
+    echo"<br> ........<br>";
+    print_r($kitas);
+    $id1=$kitas[0][2];
+    $id2=$kitas[1][2];
+    $id3=$kitas[2][2];
+    echo "<h1>".$kitas[0][0]."0% ".$kitas[0][1]."</h1>";
+    echo "<a href='contacts.php?var=$id1'><button>Kontaktai</button></a><a href='compare_an.php?var=$id1'><button>Palyginti atsakymus</button></a></li>";
+    echo "<h1>".$kitas[1][0]."0% ".$kitas[1][1]."</h1>";
+    echo "<a href='contacts.php?var=$id2'><button>Kontaktai</button></a><a href='compare_an.php?var=$id2'><button>Palyginti atsakymus</button></a></li>";
+    echo "<h1>".$kitas[2][0]."0% ".$kitas[2][1]."</h1>";
+    echo "<a href='contacts.php?var=$id3'><button>Kontaktai</button></a><a href='compare_an.php?var=$id3'><button>Palyginti atsakymus</button></a></li>";
 };
 // patikrinti ar kitas zmogus mergina ar vaikinas
 //patikrinti ar tai nera tas pats vartotojas ( kas siuo atveju net neimanoma, nes poruojama tik su skirtinga lytimi, tai galima

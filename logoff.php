@@ -2,7 +2,7 @@
 session_start();
 function atsijungti(){
 session_destroy();
-header('Location: index.html');
+header('Location: index.php');
  };
 atsijungti();
 ?>
