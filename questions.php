@@ -1,5 +1,6 @@
-<?php 
-include("functions.php");
+﻿<?php 
+include_once("dropdown.php");
+include_once("functions.php");
 session_start();
 ?>
 <!DOCTYPE HTML>
@@ -13,6 +14,10 @@ session_start();
     <div class="white_box">
 <?php
 
+$testing = "ąčęėįšųūĄČĘĖĮŠŲŪ";
+echo "$testing";
+
+header('Content-Type: text/html; charset=utf-8');
 
 
 $n=1;

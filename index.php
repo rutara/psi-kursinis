@@ -1,3 +1,6 @@
+<?php 
+include_once('dropdown.php');
+?>
 <!DOCTYPE HTML>
 <html lang="lt">
 

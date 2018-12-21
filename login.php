@@ -1,6 +1,7 @@
 <?php 
 session_start();
-include("functions.php");
+include_once("dropdown.php");
+include_once("functions.php");
 
 ?>
 <!DOCTYPE HTML>
@@ -15,11 +16,16 @@ include("functions.php");
         <h2>Meilės laboratorija</h2>
         <h3>Prisijungti</h3>
     <form method="post" action=""> 
+        <table><tr><td>
           <label>vardas</label>
-          <input type="text" name="name"><br />
+</td><td>
+          <input type="text" name="name">
+</td></tr><tr><td>
           <label>slaptazodis</label>
-          <input type="password" name="pass"><br />
-          <input class="button" type="submit" name = "submit" value="Prisijungti"><br />
+</td><td>
+          <input type="password" name="pass">
+</td></tr></table>
+          <input class="button" type="submit" name = "submit" value="Prisijungti">
 	</form>	
    <?php
    

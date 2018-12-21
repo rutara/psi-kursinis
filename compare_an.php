@@ -1,3 +1,6 @@
+<?php
+include_once("dropdown.php");
+?>
 <!DOCTYPE HTML>
 <html lang="lt">
 
@@ -10,10 +13,9 @@
     <div class="white_box">
         <h1>Palyginti atsakymus</h1> 
 <?php
-session_start();
 $id = $_SESSION['id'];
 $var = $_GET["var"];
-include("config.php");
+include_once("config.php");
 $conn = mysqli_connect($host, $user,$pass,$db); 
 $answers = mysqli_query($conn,"SELECT DISTINCT * FROM user_answers u JOIN answers a on a.answer_id=u.answer_id where user_id=$id");
 while ($row = mysqli_fetch_array($answers)){
@@ -33,7 +35,7 @@ $info = mysqli_fetch_array($query3);
 echo"<table>";
 echo "<tr>";
 echo"<th><h2>Tu</h2></th>";
-echo"<th><h2><3</h2></th>";
+echo"<th><h2>&#10084</h2></th>";
 echo "<th><h2>".$info['vardas']."</h2></th>";
 echo "</tr>";
 

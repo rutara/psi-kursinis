@@ -1,3 +1,6 @@
+<?php
+include_once("dropdown.php");
+?>
 <!DOCTYPE HTML>
 <html lang="lt">
 
@@ -11,31 +14,27 @@
         <h1>Kontaktai</h1>
         
 <?php
-session_start();
-$id = $_SESSION['id'];
+
+
 $var = $_GET["var"];
-echo $var;
-include("config.php");
+include_once("config.php");
+include_once("dropdown.php");
 $conn = mysqli_connect($host, $user,$pass,$db); 
-$answers = mysqli_query($conn,"SELECT DISTINCT* FROM user_answers where user_id=$id");
+$answers = mysqli_query($conn,"SELECT DISTINCT* FROM users where user_id=$var");
 $curr_answer_id = array();
+$row = mysqli_fetch_array($answers);
+$vardas=$row['vardas'];
+$gimetai=$row['gim_data'];
+$tel=$row['tel'];
+$pastas=$row['elpastas'];
+$fb=$row['fblink'];
+$dob = date("Y-m-d",strtotime($gimetai));
+$age = date("Y-m-d")-$dob;
+echo "<h1>$vardas,$age</h1>";
+echo"<h3>$tel</h3>";
+echo"<h3>$pastas</h3>";
+echo  "<a href='$fb' target='_blank'><button>Facebook nuoroda</button></a>";
 
-
-while ($row = mysqli_fetch_array($answers)){
-   $curr_answer_id[]=$row['answer_id'];
-}
-
-//print_r($curr_answer_id);
-
-
-$answers = mysqli_query($conn,"SELECT DISTINCT * FROM user_answers where user_id=$var");
-while ($row = mysqli_fetch_array($answers)){
-   $u_answer_id[]=$row['answer_id'];
-}
-print_r($u_answer_id);
-$query3 = mysqli_query($conn,"SELECT  DISTINCT * FROM users where user_id=$var");
-$info = mysqli_fetch_array($query3);
-echo $info['vardas'];  
 ?>
 </div>
 </body>

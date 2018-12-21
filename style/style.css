@@ -1,13 +1,20 @@
 * {
     text-align: center;
     font-family: Comic Sans MS;
-    color: rgb(130, 183, 251);
+    color: rgb(255, 255, 255);
 }
 
 body {
-    background-image: url("../img/laboratorija.png");
+    background-image: url("../img/puslapis.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
+    /* background-size: cover; */
+    background-position: center center;
+}
+
+.match {
+    background-image: url("../img/rezultau fonas.jpg");
+    background-repeat: no-repeat;
+    /* background-size: cover; */
     background-position: center center;
 }
 
@@ -23,6 +30,7 @@ h1 {
     font-size: 150%;
     font-weight: 150%;
     margin: 10px;
+    color:white;
 }
 
 .button:hover, button:hover {
@@ -31,30 +39,17 @@ h1 {
 }
 
 .white_box {
-    background-color: rgba(255, 255, 255, 0.11);
+    background-color: rgba(250, 136, 101, 0.767);
     padding: 5%;
-    width: 50%;
+    width: 40%;
     margin: auto;
     position: relative;
     top: 100px;
     border-radius: 10px;
 }
 
-.circle {
-    height: 50px;
-    width: 50px;
-    padding: 10px;
-    border-radius: 50%;
-    background-color: antiquewhite;
-}
-
-.disconn {
-    padding: 5px;
-    float: right;
-}
-
 .disconn button {
-    background-color: rgb(0, 81, 156);
+    background-color: rgb(3, 23, 41);
     padding: 5px;
     border-radius: 5px;
     font-size: 100%;
@@ -75,6 +70,65 @@ table {
     font-size: 150%;
     margin: auto;
 }
-.pav{
-    height: 200px;
+
+.pav {
+    height: 300px;
+}
+
+.dropbtn {
+    background-color: rgb(89, 26, 236);
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover {
+    background-color: rgb(89, 26, 236);
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    float: right;
+    margin-right: 20px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #eca1d3;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: rgb(255, 255, 255);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: rgb(158, 10, 79);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* .dropdown:hover .dropbtn {
+    background-color: #c1ace4;
+} */
+
+input{
+     color:rgb(6, 6, 47); 
+    margin: 5px;
+    padding:5px;
 }
