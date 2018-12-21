@@ -15,18 +15,18 @@ include_once("functions.php");
         <h3>Registruotis</h3>
     <form method="post" action=""> 
            <table><tr><td>
-          <label>Vardas</label>
+          <label>Vardas *</label>
         </td><td>
           <input type="text" name="name">
         </td></tr><tr><td>
-          <label>Slaptažodis</label>
+          <label>Slaptažodis *</label>
 </td><td>
           <input type="password" name="pass"></td></tr><tr><td>
            <label>Gimino data</label>
 </td><td>
           <input type="date" name="dob">
 </td></tr><tr><td>
-          <p>Lytis </p>
+          <p>Lytis *</p>
 </td><td>
           <label>Vaikinas</label>
           <input type="radio" name="gender" value="vaikinas">

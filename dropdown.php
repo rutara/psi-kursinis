@@ -14,7 +14,7 @@ session_start();
   <button class="dropbtn">Nustatymai</button>
   <div class="dropdown-content">
   <a href="logoff.php">Atsijungti</a>
-  <a href="files/pagalba.pdf">Pagalba</a>
+  <a href="files/pagalba.pdf" target='_blank'>Pagalba</a>
   </div>
 </div>
 </body>
