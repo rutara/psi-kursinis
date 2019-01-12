@@ -111,9 +111,17 @@ function irasyti($i){
     $kl_id = $row['q_id'];
 
     $ats =  $_GET["submit$i"];
-
+    
     $sql = "INSERT INTO user_answers (answer_id,user_id,question_id)
     VALUES ($ats,$id,$kl_id)";
+
+    $darom = $conn->query($sql);
+    if ($darom === TRUE) {
+        // echo "New record created successfully";
+        // $i++;
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
 };
 
 
@@ -166,15 +174,9 @@ function matching($curr_id){
             $kitas[] = $m_info[$i];
         }
 
-        $ttt = $m_info[$i];
-        echo $ttt[1].$ttt[0];
-        echo "<br>";
+       
     }
-    echo "<br>";
-
-    print_r($m_info);
-    echo"<br> ........<br>";
-    print_r($kitas);
+    
     $id1=$kitas[0][2];
     $id2=$kitas[1][2];
     $id3=$kitas[2][2];

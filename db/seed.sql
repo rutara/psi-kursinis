@@ -126,14 +126,14 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `vardas`, `slaptazodis`, `gim_data`, `nuo`, `iki`, `lytis`, `tel`, `elpastas`, `fblink`) VALUES
 (1, 'Justas', 'pass', '1970-01-01', 18, 28, 'vaikina', '+37061095620', 'rutar4t@gmial.com', 'https://www.facebook.com/ruta.ratkute.1'),
-(2, 'Marius', 'pass', '1970-01-01', 17, 25, 'vaikina', '', '', ''),
+(2, 'Marius', 'pass', '1970-01-01', 17, 25, 'vaikina', '', '', 'https://www.facebook.com/agne.liubomirskaite'),
 (3, 'Lina', 'pass', '1970-01-01', 17, 26, 'mergina', '+370195620', 'lina@gmail.com', 'https://www.facebook.com/agne.liubomirskaite'),
-(4, 'Augustas', 'pass', '1970-01-01', 18, 26, 'vaikina', '', '', ''),
-(5, 'Edvinas', 'pass', '1970-01-01', 18, 25, 'vaikina', '', '', ''),
-(6, 'Gabriele', 'pass', '1970-01-01', 20, 27, 'mergina', '', '', ''),
-(7, 'Eglė', 'pass', '2018-12-02', 20, 29, 'mergina', '', '', ''),
-(8, 'Kamilė', 'pass', '1970-01-01', 18, 24, 'mergina', '', '', 'https://www.facebook.com/agne.liubomirskaite'),
-(9, 'Gytis', 'pass', '1970-01-01', 20, 25, 'vaikina', '', '', '');
+(4, 'Augustas', 'pass', '1970-01-01', 18, 26, 'vaikina', '+370195620', 'pastas@gmail.com', 'https://www.facebook.com/agne.liubomirskaite'),
+(5, 'Edvinas', 'pass', '1970-01-01', 18, 25, 'vaikina', '+370195620', 'pastas@gmail.com', 'https://www.facebook.com/agne.liubomirskaite'),
+(6, 'Gabriele', 'pass', '1970-01-01', 20, 27, 'mergina', '+370195620', 'pastas@gmail.com', 'https://www.facebook.com/agne.liubomirskaite'),
+(7, 'Eglė', 'pass', '2018-12-02', 20, 29, 'mergina', '+370195620', 'pastas@gmail.com', 'https://www.facebook.com/agne.liubomirskaite'),
+(8, 'Kamilė', 'pass', '1970-01-01', 18, 24, 'mergina', '+370195620', 'pastas@gmail.com', 'https://www.facebook.com/agne.liubomirskaite'),
+(9, 'Gytis', 'pass', '1970-01-01', 20, 25, 'vaikina', '+370195620', 'pastas@gmail.com', 'https://www.facebook.com/agne.liubomirskaite');
 
 -- --------------------------------------------------------
 
@@ -258,7 +258,6 @@ INSERT INTO `user_answers` (`user_id`, `question_id`, `answer_id`) VALUES
 (9, 7, 14),
 (9, 8, 16),
 (9, 9, 17),
-(9, 10, 20),
 (9, 10, 20);
 
 --
@@ -313,7 +312,7 @@ ALTER TABLE `matches`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables

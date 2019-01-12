@@ -14,8 +14,6 @@ session_start();
     <div class="white_box">
 <?php
 
-$testing = "ąčęėįšųūĄČĘĖĮŠŲŪ";
-echo "$testing";
 
 header('Content-Type: text/html; charset=utf-8');
 
@@ -26,14 +24,19 @@ if(!$_GET){
  klausimai($n);
 };
 
-for ($n=1; $n < 10; $n++) { 
+echo "<pre>";
+print_r($_POST);
+print_r($_GET);
+echo "</pre>";
+
+for ($n=1; $n < 12; $n++) { 
 
 if(isset($_GET["submit$n"])){
+    echo "</br>";
+    echo "SUBMITTING";
+    echo "</br>";
  irasyti($n);
- //$n++;
  klausimai($n+1);
- //break;
-
 };
 };
 if(isset($_GET["submit10"])){
