@@ -30,7 +30,7 @@ h1 {
     font-size: 150%;
     font-weight: 150%;
     margin: 10px;
-    color:white;
+    color: white;
 }
 
 .button:hover, button:hover {
@@ -42,6 +42,16 @@ h1 {
     background-color: rgba(250, 136, 101, 0.767);
     padding: 5%;
     width: 40%;
+    margin: auto;
+    position: relative;
+    top: 100px;
+    border-radius: 10px;
+}
+
+.dark_box {
+    background-color: rgba(46, 5, 32, 0.657);
+    padding: 5%;
+    width: 80%;
     margin: auto;
     position: relative;
     top: 100px;
@@ -127,8 +137,8 @@ table {
     background-color: #c1ace4;
 } */
 
-input{
-     color:rgb(6, 6, 47); 
+input {
+    color: rgb(6, 6, 47);
     margin: 5px;
-    padding:5px;
+    padding: 5px;
 }

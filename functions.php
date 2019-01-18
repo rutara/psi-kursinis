@@ -14,6 +14,9 @@ if (mysqli_connect_errno())
     $query = mysqli_query($conn,"SELECT* FROM users WHERE vardas ='$vardas' and  slaptazodis = '$slaptazodis' ");
     $rows = mysqli_num_rows($query);
     $row = mysqli_fetch_array($query);
+     if($vardas==('admin') AND $slaptazodis==('pass')){
+         header('Location: admin.php');
+        }
     if($rows == 1){
         $_SESSION['username']=$vardas;
         $row['lytis'];
